@@ -2,11 +2,13 @@ package com.example.ascourse1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,12 +16,13 @@ public class MainActivity extends AppCompatActivity {
     EditText lastname;
     EditText email;
     EditText pass;
-    Button button;
+    Button button,next_page;
     TextView nametext;
     TextView lastnametext;
     TextView emailtext;
     TextView passtext;
     Button button2;
+    boolean isRegistred = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +39,24 @@ public class MainActivity extends AppCompatActivity {
         emailtext = findViewById(R.id.emailtext);
         passtext = findViewById(R.id.passtext);
         button2 = findViewById(R.id.button2);
+        next_page = findViewById(R.id.next_page);
 
 
+
+        // register button
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nametext.setText("First name: " + name.getText().toString());
-                lastnametext.setText("Last Name:" + lastname.getText().toString());
+                lastnametext.setText("Last Name: " + lastname.getText().toString());
                 emailtext.setText("Email adress: " + email.getText().toString());
                 passtext.setText("Password: " + pass.getText().toString());
+                Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
+                isRegistred = true;
 
             }
         });
-
+        // reset button
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +69,23 @@ public class MainActivity extends AppCompatActivity {
                 lastnametext.setText("Last Name: " + "");
                 emailtext.setText("Email adress: " + "");
                 passtext.setText("Password: " + "");
+                Toast.makeText(getBaseContext(),"Reset",Toast.LENGTH_SHORT).show();
+                isRegistred = false;
+            }
+        });
+
+
+        next_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                while (isRegistred){
+                    Intent login = new Intent(getBaseContext(),LoginPage.class);
+                    startActivity(login);
+                    break;
+
+                }
+
+
             }
         });
 
