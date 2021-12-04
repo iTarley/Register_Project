@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText name;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 lastnametext.setText("Last Name: " + lastname.getText().toString());
                 emailtext.setText("Email adress: " + email.getText().toString());
                 passtext.setText("Password: " + pass.getText().toString());
+
+
                 Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
                 isRegistred = true;
 
