@@ -2,10 +2,9 @@ package com.example.ascourse1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
-import java.util.HashMap;
 
 public class LoginPage extends AppCompatActivity {
 
