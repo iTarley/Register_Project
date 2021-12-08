@@ -2,15 +2,14 @@ package com.example.ascourse1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,51 +49,42 @@ public class MainActivity extends AppCompatActivity {
 
 
         // register button
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nametext.setText("First name: " + name.getText().toString());
-                lastnametext.setText("Last Name: " + lastname.getText().toString());
-                emailtext.setText("Email adress: " + email.getText().toString());
-                passtext.setText("Password: " + pass.getText().toString());
+        button.setOnClickListener(v -> {
+            nametext.setText("First name: " + name.getText().toString());
+            lastnametext.setText("Last Name: " + lastname.getText().toString());
+            emailtext.setText("Email adress: " + email.getText().toString());
+            passtext.setText("Password: " + pass.getText().toString());
 
 
-                Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
-                isRegistred = true;
+            Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
+            isRegistred = true;
 
-            }
         });
         // reset button
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                name.setText("");
-                lastname.setText("");
-                email.setText("");
-                pass.setText("");
+        button2.setOnClickListener(v -> {
+            name.setText("");
+            lastname.setText("");
+            email.setText("");
+            pass.setText("");
 
-                nametext.setText("First name: " + "");
-                lastnametext.setText("Last Name: " + "");
-                emailtext.setText("Email adress: " + "");
-                passtext.setText("Password: " + "");
-                Toast.makeText(getBaseContext(),"Reset",Toast.LENGTH_SHORT).show();
-                isRegistred = false;
-            }
+            nametext.setText("First name: " + "");
+            lastnametext.setText("Last Name: " + "");
+            emailtext.setText("Email adress: " + "");
+            passtext.setText("Password: " + "");
+            Toast.makeText(getBaseContext(),"Reset",Toast.LENGTH_SHORT).show();
+            isRegistred = false;
         });
 
 
-        next_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                while (isRegistred){
-                    Intent login = new Intent(getBaseContext(),LoginPage.class);
-                    startActivity(login);
-                    break;
-
-                }
+        next_page.setOnClickListener(v -> {
+            if (isRegistred){
+                Intent login = new Intent(getBaseContext(),LoginPage.class);
+                startActivity(login);
 
 
             }
+
+
         });
 
 
