@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     Button button2;
     boolean isRegistred = false;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
