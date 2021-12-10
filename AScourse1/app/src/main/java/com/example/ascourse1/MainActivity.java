@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,21 +48,37 @@ public class MainActivity extends AppCompatActivity {
         next_page = findViewById(R.id.next_page);
 
 
-
         // register button
-        button.setOnClickListener(v -> {
-            nametext.setText("First name: " + name.getText().toString());
-            lastnametext.setText("Last Name: " + lastname.getText().toString());
-            emailtext.setText("Email adress: " + email.getText().toString());
-            passtext.setText("Password: " + pass.getText().toString());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLite myDB = new SQLite(MainActivity.this);
+                myDB.register(name.getText().toString().trim(),
+                        lastname.getText().toString().trim(),
+                        email.getText().toString().trim(),
+                        pass.getText().toString().trim());
 
 
-            Toast.makeText(getBaseContext(),"Success",Toast.LENGTH_LONG).show();
-            isRegistred = true;
 
+                nametext.setText("First name: " + name.getText().toString());
+                lastnametext.setText("Last Name: " + lastname.getText().toString());
+                emailtext.setText("Email adress: " + email.getText().toString());
+                passtext.setText("Password: " + pass.getText().toString());
+                isRegistred = true;
+
+
+
+            }
         });
         // reset button
         button2.setOnClickListener(v -> {
+
+            SQLite myDB = new SQLite(MainActivity.this);
+            myDB.deleteAll();
+
+
+
+
             name.setText("");
             lastname.setText("");
             email.setText("");
