@@ -91,6 +91,4 @@ public class SQLite extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
-    //TODO make textview method
-
 }
